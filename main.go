@@ -15,12 +15,15 @@ func init() {
 
 func main() {
 	r := gin.Default()
-	r.POST("/", controllers.MembroCreate)
-	r.GET("/", controllers.MembrosIndex)
-	r.GET("/:id", controllers.ShowMembro)
-	r.PUT("/:id", controllers.UpdateMembro)
-	r.DELETE("/:id", controllers.DeleteMembro)
 
+	// Cria rotas para os membros
+	r.GET("/membro", controllers.MembrosIndex)
+	r.GET("/membro/:id", controllers.ShowMembro)
+	r.POST("/membro", controllers.MembroCreate)
+	r.PUT("/membro/:id", controllers.UpdateMembro)
+	r.DELETE("membro/:id", controllers.DeleteMembro)
+
+	//Cuida da valaidação de admin
 	r.POST("/signup", controllers.Singup)
 	r.POST("/login", controllers.Login)
 	r.GET("/validate", middleware.RequireAuth, controllers.Validate)
